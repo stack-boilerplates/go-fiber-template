@@ -5,6 +5,8 @@ import "github.com/gofiber/fiber/v2"
 func setupApp() *fiber.App {
 	app := fiber.New()
 
+	app.Static("/home", "./public")
+
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World!")
 	})
