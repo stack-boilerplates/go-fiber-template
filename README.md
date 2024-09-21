@@ -24,11 +24,7 @@ go build
 
 Run tests
 ```shell
-go test ./...
-```
-or
-```shell
-go test -v
+go test -v ./...
 ```
 
 Check test coverage

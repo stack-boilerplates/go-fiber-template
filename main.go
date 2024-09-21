@@ -9,6 +9,10 @@ func setupApp() *fiber.App {
 		return c.SendString("Hello, World!")
 	})
 
+	app.Get("/:value", func(c *fiber.Ctx) error {
+		return c.SendString("value: " + c.Params("value"))
+	})
+
 	return app
 }
 

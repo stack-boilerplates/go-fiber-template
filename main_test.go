@@ -30,3 +30,18 @@ func TestHelloWorldRoute(t *testing.T) {
 
 	assert.Equal(t, "Hello, World!", string(body))
 }
+
+func TestGetValueRoute(t *testing.T) {
+	app := setupApp()
+
+	req := httptest.NewRequest(http.MethodGet, "/testvalue", nil)
+	resp, err := app.Test(req)
+	assert.NoError(t, err)
+
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+
+	body := httptest.NewRecorder()
+	body.Body.ReadFrom(resp.Body)
+
+	assert.Equal(t, "value: testvalue", body.Body.String())
+}
