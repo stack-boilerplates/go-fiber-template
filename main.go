@@ -12,7 +12,7 @@ func setupApp() *fiber.App {
 	})
 
 	app.Get("/:value", func(c *fiber.Ctx) error {
-		return c.SendString("value: " + c.Params("value"))
+		return c.SendString("the value is: " + c.Params("value"))
 	})
 
 	return app

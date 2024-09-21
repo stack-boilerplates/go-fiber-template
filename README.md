@@ -1,11 +1,12 @@
 # go-fiber-template
 Go Fiber project template
 
-- Go Fiber v2
+- [Fiber v2](https://gofiber.io/)
+- [Air](https://github.com/cosmtrek/air) (Hot Reload)
 
 ## Requirements
 
-- Download and install Go 1.23.1 or above
+- Download and install Go 1.23.1 or higher
 
 ## Run
 
