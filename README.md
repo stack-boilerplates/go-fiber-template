@@ -1,6 +1,12 @@
 # go-fiber-template
 Go Fiber project template
 
+- Go Fiber v2
+
+## Requirements
+
+- Download and install Go 1.23.1 or above
+
 ## Run
 
 Run directly on the source
@@ -19,6 +25,10 @@ go build
 Run tests
 ```shell
 go test ./...
+```
+or
+```shell
+go test -v
 ```
 
 Check test coverage
