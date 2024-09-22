@@ -1,9 +1,27 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"log"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+
+	"github.com/vserpa/go-fiber-template/database"
+	"github.com/vserpa/go-fiber-template/router"
+
+	_ "github.com/lib/pq"
+)
 
 func setupApp() *fiber.App {
+
+	if err := database.Connect(); err != nil {
+		log.Fatal(err)
+	}
+
 	app := fiber.New()
+	app.Use(logger.New())
+
+	router.SetupApiRoutes(app)
 
 	app.Static("/home", "./public")
 

@@ -4,6 +4,8 @@ go 1.23.1
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.5
+	github.com/joho/godotenv v1.3.0
+	github.com/lib/pq v1.10.9
 	github.com/stretchr/testify v1.9.0
 )
 
