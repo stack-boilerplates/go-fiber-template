@@ -9,14 +9,14 @@ Go Fiber project template
 
 - Fiber static page
 - Env vars
-- Docker Compose to run postgres
-- Database connection
-- Database creation
-- Product model
+- Docker Compose with Postgres
+- Database creation on startup
+- Model example
 - Group routes to api
 - Handler to CRUD operations
 - Fiber Basic Auth Middleware
 - Unit Test example
+- Default Response Structure
 
 ## Requirements
 
@@ -48,9 +48,9 @@ go build
 
 ## Access
 
-Hello: http://localhost:3000/
-Static: http://localhost:3000/home
-Api: http://localhost:3000/api
+- Hello World: http://localhost:3000/
+- Static: http://localhost:3000/home
+- Api: http://localhost:3000/api
 
 ## Tests
 
