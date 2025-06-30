@@ -43,5 +43,5 @@ func TestGetValueRoute(t *testing.T) {
 	body := httptest.NewRecorder()
 	body.Body.ReadFrom(resp.Body)
 
-	assert.Equal(t, "value: testvalue", body.Body.String())
+	assert.Equal(t, "the value is: testvalue", body.Body.String())
 }
