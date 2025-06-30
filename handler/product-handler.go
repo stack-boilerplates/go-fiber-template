@@ -11,7 +11,7 @@ import (
 )
 
 func GetAllProducts(c *fiber.Ctx) error {
-	rows, err := database.DB.Query("SELECT name, description, category, amount FROM products order by name")
+	rows, err := database.DB.Query("SELECT id, name, description, category, amount FROM products order by name")
 	if err != nil {
 		return c.Status(500).JSON(dto.ResponseFailed(err))
 	}
@@ -21,7 +21,7 @@ func GetAllProducts(c *fiber.Ctx) error {
 
 	for rows.Next() {
 		product := model.Product{}
-		err := rows.Scan(&product.Name, &product.Description, &product.Category, &product.Amount)
+		err := rows.Scan(&product.Id, &product.Name, &product.Description, &product.Category, &product.Amount)
 		if err != nil {
 			return c.Status(500).JSON(dto.ResponseFailed(err))
 		}
@@ -50,7 +50,7 @@ func GetSingleProduct(c *fiber.Ctx) error {
 		return c.Status(404).JSON(dto.ResponseFailed(fmt.Errorf("product not found")))
 	}
 
-	err = row.Scan(&id, &product.Amount, &product.Name, &product.Description, &product.Category)
+	err = row.Scan(&product.Id, &product.Amount, &product.Name, &product.Description, &product.Category)
 	if err != nil {
 		return c.Status(500).JSON(dto.ResponseFailed(err))
 	}
@@ -65,7 +65,11 @@ func CreateProduct(c *fiber.Ctx) error {
 		return c.Status(400).JSON(dto.ResponseFailed(err))
 	}
 
-	_, err := database.DB.Query("INSERT INTO products (name, description, category, amount) VALUES ($1, $2, $3, $4)", p.Name, p.Description, p.Category, p.Amount)
+	err := database.DB.QueryRow(
+		"INSERT INTO products (name, description, category, amount) VALUES ($1, $2, $3, $4) RETURNING id",
+		p.Name, p.Description, p.Category, p.Amount,
+	).Scan(&p.Id)
+
 	if err != nil {
 		return c.Status(500).JSON(dto.ResponseFailed(err))
 	}
