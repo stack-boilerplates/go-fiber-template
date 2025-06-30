@@ -30,6 +30,11 @@ docker compose up
 
 ## Run Application
 
+Check if you have .env file. If not, run:
+```shell
+cp .env.example .env
+```
+
 Run with Air Hot Reload
 ```shell
 air
